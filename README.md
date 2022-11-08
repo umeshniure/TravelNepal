@@ -1,2 +1,2 @@
-# BookStack
-an online book ordering service currently on development phase!
+# TravelNepal
+an online travel booking service currently on development phase!
