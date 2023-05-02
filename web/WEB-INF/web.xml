@@ -7,7 +7,7 @@
     </session-config>
     <error-page>
         <error-code>404</error-code>
-        <location>/WEB-INF/404-notfound.jsp </location>
+        <location>/WEB-INF/ </location>
     </error-page>
 <!--    <servlet>
         <servlet-name>Home</servlet-name>

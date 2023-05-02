@@ -4,14 +4,20 @@
  */
 package com.controller;
 
+import com.model.Users;
+import com.dao.UserDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Date;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import sun.jvm.hotspot.utilities.AddressOps;
 
 /**
  *
@@ -19,6 +25,12 @@ import javax.servlet.http.HttpServletResponse;
  */
 @WebServlet(name = "UserRegistration", urlPatterns = {"/userRegistration"})
 public class UserRegistration extends HttpServlet {
+
+    private UserDAO userDAO;
+
+    public void init() {
+        userDAO = new UserDAO();
+    }
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -30,11 +42,29 @@ public class UserRegistration extends HttpServlet {
             throws ServletException, IOException {
         String name = request.getParameter("name");
         String email = request.getParameter("email");
-        String phone = request.getParameter("phone");
+        Long phone = Long.parseLong(request.getParameter("phone"));
+        Long pan = Long.parseLong(request.getParameter("phone"));
         String password1 = request.getParameter("password1");
         String password2 = request.getParameter("password2");
+        String address = request.getParameter("address");
         Date dob = Date.valueOf(request.getParameter("dob"));
-        
+        if (password1.equals(password2)) {
+            Users newuser = new Users(1, name, email, address, phone, pan, dob, password1);
+            try {
+                if (userDAO.insertUser(newuser)) {
+//                    request.getSession(false).setAttribute("successMessage", "You are successfuly Registered. Please login with your registered account to continue.");
+                    response.sendRedirect("index.jsp");
+                } else {
+//                    request.getSession(false).setAttribute("errorMessage", "Sorry! could not register at the moment.");
+                    response.sendRedirect("userRegistration");
+                }
+            } catch (SQLException ex) {
+                Logger.getLogger(UserRegistration.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } else {
+            response.sendRedirect("userRegistration");
+        }
+
     }
 
     /**
