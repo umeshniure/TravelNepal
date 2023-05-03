@@ -12,6 +12,7 @@ import java.sql.Date;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -35,6 +36,8 @@ public class UserRegistration extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        RequestDispatcher rd = request.getRequestDispatcher("user_register.jsp");
+        rd.forward(request, response);
     }
 
     @Override
