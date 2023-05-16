@@ -18,7 +18,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import sun.jvm.hotspot.utilities.AddressOps;
 
 /**
  *
@@ -56,7 +55,7 @@ public class UserRegistration extends HttpServlet {
             try {
                 if (userDAO.insertUser(newuser)) {
 //                    request.getSession(false).setAttribute("successMessage", "You are successfuly Registered. Please login with your registered account to continue.");
-                    response.sendRedirect("index.jsp");
+                    response.sendRedirect("login");
                 } else {
 //                    request.getSession(false).setAttribute("errorMessage", "Sorry! could not register at the moment.");
                     response.sendRedirect("userRegistration");
