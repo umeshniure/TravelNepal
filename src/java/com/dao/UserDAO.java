@@ -4,6 +4,7 @@ import com.config.Config;
 import com.model.Users;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class UserDAO {
@@ -29,5 +30,26 @@ public class UserDAO {
             System.out.println(e);
         }
         return false;
+    }
+
+    public Users selectUserByEmailAndPassword(String email, String password) {
+        String SELECT_USER_BY_EMAIL_AND_PASSWORD = "select id, user_type, firstname from users where email = ? and password = ?";
+        Users user = null;
+        try {
+            Connection connection = Config.getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement(SELECT_USER_BY_EMAIL_AND_PASSWORD);
+            preparedStatement.setString(1, email);
+            preparedStatement.setString(2, password);
+            ResultSet rs = preparedStatement.executeQuery();
+            if (rs.next()) {
+                int id = rs.getInt("id");
+                int user_type = rs.getInt("user_type");
+                String firstname = rs.getString("name");
+                user = new Users(id, user_type, firstname);
+            }
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        return user;
     }
 }

@@ -40,6 +40,12 @@ public class Users {
         this.dob = dob;
         this.password = password;
     }
+    
+    public Users(int id, int user_type, String name){
+        this.id=id;
+        this.user_type=user_type;
+        this.name=name;
+    }
 
     /**
      * @return the id
