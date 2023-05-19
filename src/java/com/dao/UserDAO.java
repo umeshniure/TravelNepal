@@ -33,7 +33,7 @@ public class UserDAO {
     }
 
     public Users selectUserByEmailAndPassword(String email, String password) {
-        String SELECT_USER_BY_EMAIL_AND_PASSWORD = "select id, user_type, firstname from users where email = ? and password = ?";
+        String SELECT_USER_BY_EMAIL_AND_PASSWORD = "select id, user_type, name from users where email = ? and password = ?";
         Users user = null;
         try {
             Connection connection = Config.getConnection();

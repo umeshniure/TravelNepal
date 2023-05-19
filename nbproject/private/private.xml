@@ -5,10 +5,13 @@
         <group>
             <file>file:/C:/Users/Umesh/OneDrive/Documents/NetBeansProjects/TravelNepal/src/java/com/controller/UserRegistration.java</file>
             <file>file:/C:/Users/Umesh/OneDrive/Documents/NetBeansProjects/TravelNepal/src/java/com/dao/UserDAO.java</file>
+            <file>file:/C:/Users/Umesh/OneDrive/Documents/NetBeansProjects/TravelNepal/src/java/com/controller/verifyLogin.java</file>
             <file>file:/C:/Users/Umesh/OneDrive/Documents/NetBeansProjects/TravelNepal/src/java/com/model/Users.java</file>
             <file>file:/C:/Users/Umesh/OneDrive/Documents/NetBeansProjects/TravelNepal/web/vendor_dashboard.jsp</file>
+            <file>file:/C:/Users/Umesh/OneDrive/Documents/NetBeansProjects/TravelNepal/src/java/com/controller/VendorRegistration.java</file>
             <file>file:/C:/Users/Umesh/OneDrive/Documents/NetBeansProjects/TravelNepal/web/user_register.jsp</file>
             <file>file:/C:/Users/Umesh/OneDrive/Documents/NetBeansProjects/TravelNepal/web/index.jsp</file>
+            <file>file:/C:/Users/Umesh/OneDrive/Documents/NetBeansProjects/TravelNepal/src/java/com/controller/Home.java</file>
         </group>
     </open-files>
 </project-private>

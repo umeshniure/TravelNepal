@@ -8,7 +8,7 @@ import java.sql.SQLException;
 
 public class PackagesDAO {
     public boolean insertPackage(Packages newPackage) throws SQLException {
-        String INSERT_PACKAGE_SQL = "INSERT INTO packages" + "  (title, description, location, people, duration, price,  agencyid , picture, updated_date) VALUES " + " (?, ?, ?, ?, ?, ?, ?, ?, ?);";
+        String INSERT_PACKAGE_SQL = "INSERT INTO packages" + "  (title, description, location, people, duration, price,  agencyid , picture, updated_date, category) VALUES " + " (?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
 
         try {
             Connection connection = Config.getConnection();
@@ -22,6 +22,7 @@ public class PackagesDAO {
             preparedStatement.setInt(7, newPackage.getAgencyid());
             preparedStatement.setString(8, newPackage.getPicture());
             preparedStatement.setDate(9, newPackage.getUpdated_date());
+            preparedStatement.setInt(10, newPackage.getCategory());
             if (preparedStatement.executeUpdate() > 0) {
                 return true;
             }

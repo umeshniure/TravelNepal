@@ -16,11 +16,24 @@
         <div class="flex w-auto align-items-center justify-content-end">
             <div class="container px-5 align-items-center">
                 <div class="container px-5 align-items-center border">
-                    <form class="m-5 px-5 border" method="POST" action="packageUpload">
+                    <form class="m-5 px-5 border" method="POST" action="uploadPackage">
                         <div class="form-group">
                             <label for="inputTitle">Package Title</label>
                             <input type="text" name="title" class="form-control" id="inputTitle" placeholder="eg. Travel package to Japan">
                         </div>
+
+
+
+                        <div class="form-group">
+                            <Select name="category">Package category
+                                <option value="1">text</option>
+                                <option value="1">text1</option>
+                                <option value="1">text2</option>
+                            </select>
+                        </div>
+
+
+
                         <div class="form-row">
                             <div class="form-group col-md-4">
                                 <label for="inputPrice">Price</label>

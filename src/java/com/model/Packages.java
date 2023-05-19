@@ -7,7 +7,8 @@ public class Packages {
     private int id;
     private int people;
     private int duration;
-    private int  agencyid ;
+    private int agencyid;
+    private int category;
     private double price;
     private String title;
     private String description;
@@ -18,29 +19,31 @@ public class Packages {
     public Packages() {
     }
 
-    public Packages(String title, String description, String location, int people, int duration, double price, int  agencyid , String picture, Date updated_date) {
+    public Packages(String title, int category, String description, String location, int people, int duration, double price, int agencyid, String picture, Date updated_date) {
         super();
         this.title = title;
+        this.category = category;
         this.description = description;
         this.location = location;
         this.people = people;
         this.duration = duration;
         this.price = price;
-        this. agencyid  =  agencyid ;
+        this.agencyid = agencyid;
         this.picture = picture;
         this.updated_date = updated_date;
     }
 
-    public Packages(int id, String title, String description, String location, int people, int duration, double price, int  agencyid , String picture, Date updated_date) {
+    public Packages(int id, String title, int category, String description, String location, int people, int duration, double price, int agencyid, String picture, Date updated_date) {
         super();
         this.id = id;
+        this.title = title;
         this.title = title;
         this.description = description;
         this.location = location;
         this.people = people;
         this.duration = duration;
         this.price = price;
-        this. agencyid  =  agencyid ;
+        this.agencyid = agencyid;
         this.picture = picture;
         this.updated_date = updated_date;
     }
@@ -88,17 +91,17 @@ public class Packages {
     }
 
     /**
-     * @return the  agencyid 
+     * @return the agencyid
      */
     public int getAgencyid() {
-        return  agencyid ;
+        return agencyid;
     }
 
     /**
-     * @param  agencyid  the  agencyid  to set
+     * @param agencyid the agencyid to set
      */
-    public void setAgencyid(int  agencyid ) {
-        this. agencyid  =  agencyid ;
+    public void setAgencyid(int agencyid) {
+        this.agencyid = agencyid;
     }
 
     /**
@@ -183,6 +186,20 @@ public class Packages {
      */
     public void setUpdated_date(Date updated_date) {
         this.updated_date = updated_date;
+    }
+
+    /**
+     * @return the category
+     */
+    public int getCategory() {
+        return category;
+    }
+
+    /**
+     * @param category the category to set
+     */
+    public void setCategory(int category) {
+        this.category = category;
     }
 
 }

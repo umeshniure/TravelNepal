@@ -6,6 +6,8 @@ package com.controller;
 
 import com.model.Users;
 import com.dao.UserDAO;
+import com.secure.CheckEmail;
+import com.secure.Encrypt;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Date;
@@ -26,9 +28,13 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet(name = "UserRegistration", urlPatterns = {"/userRegistration"})
 public class UserRegistration extends HttpServlet {
 
+    private Encrypt encrypt;
+    private CheckEmail checkemail;
     private UserDAO userDAO;
 
     public void init() {
+        encrypt = new Encrypt();
+        checkemail = new CheckEmail();
         userDAO = new UserDAO();
     }
 
@@ -51,7 +57,7 @@ public class UserRegistration extends HttpServlet {
         String address = request.getParameter("address");
         Date dob = Date.valueOf(request.getParameter("dob"));
         if (password1.equals(password2)) {
-            Users newuser = new Users(1, name, email, address, phone, pan, dob, password1);
+            Users newuser = new Users(1, name, email, address, phone, pan, dob, encrypt.encryptPassword(password1));
             try {
                 if (userDAO.insertUser(newuser)) {
 //                    request.getSession(false).setAttribute("successMessage", "You are successfuly Registered. Please login with your registered account to continue.");

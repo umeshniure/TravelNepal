@@ -70,7 +70,7 @@ public class verifyLogin extends HttpServlet {
                             break;
                         case 2:
                             request.getSession(false).setAttribute("successMessage", "Welcome vendor! you are successfully logged in.");
-                            response.sendRedirect("vendorbook");
+                            response.sendRedirect("uploadPackage");
                             break;
                         case 3:
                             request.getSession(false).setAttribute("successMessage", "Hello admin! You are successfully logged in.");
