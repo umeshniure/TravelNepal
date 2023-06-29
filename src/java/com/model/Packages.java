@@ -37,6 +37,7 @@ public class Packages {
         super();
         this.id = id;
         this.title = title;
+        this.category = category;
         this.title = title;
         this.description = description;
         this.location = location;

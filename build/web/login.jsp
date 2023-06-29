@@ -26,7 +26,7 @@
                                     <form method="POST" action="login">
 
                                         <div class="form-outline mb-4">
-                                            <input type="email" name="email" id="form3Example3cg" class="form-control form-control-lg" required/>
+                                            <input type="email" name="email" type="email" id="form3Example3cg" class="form-control form-control-lg" required/>
                                             <label class="form-label" for="form3Example3cg">Your Email</label>
                                         </div>
 

@@ -27,4 +27,22 @@ public class CategoriesDAO {
         }
         return category;
     }
+    
+    public String getCategory(int id) {
+        String category_name = null;
+        String SELECT_ALL_CATEGORY = "select * from categories where id = ?";
+        try {
+            Connection connection = Config.getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement(SELECT_ALL_CATEGORY);
+            preparedStatement.setInt(1, id);
+            ResultSet rs = preparedStatement.executeQuery();
+            while (rs.next()) {
+                category_name = rs.getString("name");
+            }
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        return category_name;
+    }
+    
 }

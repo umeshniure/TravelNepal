@@ -1,5 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
+    <servlet>
+        <servlet-name>PackageController</servlet-name>
+        <servlet-class>com.controller.PackageController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>userLogout</servlet-name>
+        <servlet-class>com.controller.userLogout</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>PackageController</servlet-name>
+        <url-pattern>/packages</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>userLogout</servlet-name>
+        <url-pattern>/logout</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>
             30
@@ -9,7 +25,7 @@
         <error-code>404</error-code>
         <location>/WEB-INF/ </location>
     </error-page>
-<!--    <servlet>
+    <!--    <servlet>
         <servlet-name>Home</servlet-name>
         <servlet-class>com.web.Home</servlet-class>
         <load-on-startup>1</load-on-startup>

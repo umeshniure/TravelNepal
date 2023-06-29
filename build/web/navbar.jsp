@@ -79,7 +79,7 @@
                             <a href="home" class="nav-item nav-link active">Home</a>
                             <a href="about.html" class="nav-item nav-link">About</a>
                             <a href="service.html" class="nav-item nav-link">Services</a>
-                            <a href="package.html" class="nav-item nav-link">Tour Packages</a>
+                            <a href="packages?page=listPackage" class="nav-item nav-link">Tour Packages</a>
                             <div class="nav-item dropdown">
                                 <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Pages</a>
                                 <div class="dropdown-menu border-0 rounded-0 m-0">
@@ -91,9 +91,15 @@
                                 </div>
                             </div>
                             <a href="contact.html" class="nav-item nav-link">Contact</a>
-                            <a href="login" class="align-self-center nav-item nav-link">                                
-                                <button type="button" class="btn btn-success">Login</button>
-                            </a>
+                                <%if (session.getAttribute("successMessage") == null){%>
+                                    <a href="login" class="align-self-center nav-item nav-link">
+                                        <button type="button" class="btn btn-success">Login</button>
+                                    </a>
+                                <%}else{%>
+                                    <a href="logout" class="align-self-center nav-item nav-link">
+                                        <button type="button" class="btn btn-success">Logout</button>
+                                    </a>
+                                <%}%>
                         </div>
                     </div>
                 </nav>

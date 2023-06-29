@@ -6,6 +6,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Date;
 
 public class UserDAO {
 
@@ -46,6 +47,24 @@ public class UserDAO {
                 int user_type = rs.getInt("user_type");
                 String firstname = rs.getString("name");
                 user = new Users(id, user_type, firstname);
+            }
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        return user;
+    }
+    
+    public Users getUser(int id) {
+        String SELECT_USER_BY_EMAIL_AND_PASSWORD = "select * from users where id = ?";
+        Users user = null;
+        try {
+            Connection connection = Config.getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement(SELECT_USER_BY_EMAIL_AND_PASSWORD);
+            preparedStatement.setInt(1, id);
+            ResultSet rs = preparedStatement.executeQuery();
+            if (rs.next()) {
+                Date date = Date.valueOf(rs.getString("dob"));
+                user = new Users(rs.getInt("id"), rs.getInt("user_type"), rs.getString("name"),  rs.getString("email"), rs.getString("address"), rs.getLong("phone"), rs.getLong("pan"),date);
             }
         } catch (Exception e) {
             System.out.println(e);

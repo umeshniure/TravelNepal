@@ -54,7 +54,7 @@
                                         </div>
 
                                         <div class="form-outline mb-4">
-                                            <input type="email" name="email" id="form3Example3cg" class="form-control form-control-lg" required/>
+                                            <input type="email" type="email" name="email" id="form3Example3cg" class="form-control form-control-lg" required/>
                                             <label class="form-label" for="form3Example3cg">Your Email</label>
                                         </div>
                                         
@@ -69,12 +69,12 @@
                                         </div>
 
                                         <div class="form-outline mb-4">
-                                            <input type="password" name="password1" id="form3Example4cg" class="form-control form-control-lg" required/>
+                                            <input type="password" minlength="8" name="password1" id="form3Example4cg" class="form-control form-control-lg" required/>
                                             <label class="form-label" for="form3Example4cg">Password</label>
                                         </div>
 
                                         <div class="form-outline mb-4">
-                                            <input type="password" name="password2" id="form3Example4cdg" class="form-control form-control-lg" required/>
+                                            <input type="password" minlength="8" name="password2" id="form3Example4cdg" class="form-control form-control-lg" required/>
                                             <label class="form-label" for="form3Example4cdg">Repeat your password</label>
                                         </div>
 

@@ -41,6 +41,18 @@ public class Users {
         this.password = password;
     }
     
+    public Users(int id, int user_type, String name, String email, String address, Long phone_number, Long pan, Date dob) {
+        super();
+        this.id = id;
+        this.user_type = user_type;
+        this.name = name;
+        this.email = email;
+        this.address=address;
+        this.phone_number = phone_number;
+        this.pan = pan;
+        this.dob = dob;
+    }
+    
     public Users(int id, int user_type, String name){
         this.id=id;
         this.user_type=user_type;

@@ -12,15 +12,15 @@ import java.io.File;
 import java.sql.Date;
 import java.io.IOException;
 import java.util.List;
-import javax.servlet.RequestDispatcher;
-import javax.servlet.ServletException;
-import javax.servlet.annotation.MultipartConfig;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-import javax.servlet.http.Part;
+import jakarta.servlet.RequestDispatcher;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.MultipartConfig;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
+import jakarta.servlet.http.Part;
 
 /**
  *
@@ -95,30 +95,35 @@ public class UploadPackage extends HttpServlet {
                         int agencyid = (int) session.getAttribute("id");
                         Date updated_date = new java.sql.Date(System.currentTimeMillis());
                         System.out.println("puckage upload date is: " + updated_date);
+                        System.out.println(System.getProperty("user.dir"));
 
                         try {
                             Part pic_part = null;
                             pic_part = request.getPart("picture");
                             //String fileName = validateVendor.extractFileName(pic_part);
-                            String fileName = title + "-vendor" + agencyid + ".png";
+                            String fileName = title + "-vendor" + agencyid + ".jpg";
                             //String contextPath = request.getContextPath();
                             String contextPath = new File("").getAbsolutePath();
                             System.out.println("Context Path: " + contextPath);
-                            String imageFolderPath = "C:\\Users\\Umesh\\OneDrive\\Documents\\NetBeansProjects\\TravelNepal\\web\\img\\package_photos\\" + session.getAttribute("id");
+//                            String imageFolderPath = "C:\\Users\\Umesh\\OneDrive\\Documents\\NetBeansProjects\\TravelNepal\\web\\img\\package_photos\\" + session.getAttribute("id");                            
+                            String imageFolderPath = "D:\\TravelNepal\\TravelNepal\\web\\img\\package_photos\\" + session.getAttribute("id");
                             File fileSaveDir = new File(imageFolderPath);
                             fileSaveDir.mkdir();
-                            String imageSavePath = "C:\\Users\\Umesh\\OneDrive\\Documents\\NetBeansProjects\\TravelNepal\\web\\img\\package_photos\\" + session.getAttribute("id") + File.separator + fileName;
+                            String imageSavePath = "D:\\TravelNepal\\TravelNepal\\web\\img\\package_photos\\" + session.getAttribute("id") + File.separator + fileName;
                             System.out.println("image save path: " + imageSavePath);
                             pic_part.write(imageSavePath + File.separator);
                             Packages newPackage = new Packages(title, category, description, location, people, duration, price, agencyid, fileName, updated_date);
 
                             if (packageDAO.insertPackage(newPackage)) {
                                 request.getSession(false).setAttribute("successMessage", "Hurray! one package is successfully added.");
+                                
+                                RequestDispatcher rd=  request.getRequestDispatcher("packages?page=listPackage");
+                                rd.include(request, response);
                             } else {
                                 request.getSession(false).setAttribute("errorMessage", "Sorry, the package couldnot be added at the moment.");
+                                response.sendRedirect("uploadPackage");
                             }
 
-                            response.sendRedirect("uploadPackage");
                         } catch (Exception e) {
                             System.out.println(e);
                         }
