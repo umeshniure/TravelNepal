@@ -10,6 +10,7 @@ package com.dao;
  */
 import com.config.Config;
 import com.model.Booking;
+import com.model.Packages;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.Date;
@@ -63,13 +64,39 @@ public class BookingDAO {
         return bookings;
     }
 
-    public List<Booking> findBookingsByPackage(int packageId) {
+    public Booking findBookingsById(int Id) {
+        Booking booking = null;
+
+        try (Connection connection = Config.getConnection()) {
+            String query = "SELECT * FROM bookings WHERE id = ?";
+            PreparedStatement statement = connection.prepareStatement(query);
+            statement.setInt(1, Id);
+            ResultSet resultSet = statement.executeQuery();
+
+            while (resultSet.next()) {
+                int id = resultSet.getInt("id");
+                int package_id = resultSet.getInt("package_id");
+                String customerName = resultSet.getString("customer_name");
+                String customerEmail = resultSet.getString("customer_email");
+                Date bookingDate = resultSet.getDate("booking_date");
+                int numberOfPeople = resultSet.getInt("number_of_people");
+
+                booking = new Booking(id, package_id, customerName, customerEmail, bookingDate, numberOfPeople);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return booking;
+    }
+    
+    public List<Booking> findBookingsByPackage(int agentId) {
         List<Booking> bookings = new ArrayList<>();
 
         try (Connection connection = Config.getConnection()) {
-            String query = "SELECT * FROM bookings WHERE package_id = ?";
+            String query = "SELECT * FROM bookings inner join packages on bookings.package_id = packages.id WHERE packages.agencyid = ?";
             PreparedStatement statement = connection.prepareStatement(query);
-            statement.setInt(1, packageId);
+            statement.setInt(1, agentId);
             ResultSet resultSet = statement.executeQuery();
 
             while (resultSet.next()) {
@@ -78,8 +105,10 @@ public class BookingDAO {
                 String customerEmail = resultSet.getString("customer_email");
                 Date bookingDate = resultSet.getDate("booking_date");
                 int numberOfPeople = resultSet.getInt("number_of_people");
+                java.sql.Date date= java.sql.Date.valueOf(resultSet.getString("updated_date"));
+                Packages packag = new Packages(resultSet.getInt("id"),resultSet.getString("title"),resultSet.getInt("category"),resultSet.getString("description"), resultSet.getString("location"),resultSet.getInt("people"),resultSet.getInt("duration"),resultSet.getDouble("price"),resultSet.getInt("agencyid"),resultSet.getString("picture"),date);
 
-                Booking booking = new Booking(id, packageId, customerName, customerEmail, bookingDate, numberOfPeople);
+                Booking booking = new Booking(id, packag, customerName, customerEmail, bookingDate, numberOfPeople);
                 bookings.add(booking);
             }
         } catch (SQLException e) {
@@ -113,6 +142,22 @@ public class BookingDAO {
         }
 
         return bookings;
+    }
+    
+    public boolean deleteBooking(int id){
+        String INSERT_PACKAGE_SQL = "DELETE from bookingss WHERE id = ?;";
+
+        try {
+            Connection connection = Config.getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement(INSERT_PACKAGE_SQL);
+            preparedStatement.setInt(1, id);
+            if (preparedStatement.executeUpdate() > 0) {
+                return true;
+            }
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return false;
     }
 }
 

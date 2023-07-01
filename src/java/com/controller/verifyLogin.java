@@ -72,10 +72,6 @@ public class verifyLogin extends HttpServlet {
                             request.getSession(false).setAttribute("successMessage", "Welcome vendor! you are successfully logged in.");
                             response.sendRedirect("uploadPackage");
                             break;
-                        case 3:
-                            request.getSession(false).setAttribute("successMessage", "Hello admin! You are successfully logged in.");
-                            response.sendRedirect("admin");
-                            break;
                         default:
                             request.getSession(false).setAttribute("successMessage", "Hello " + user.getName() + ", welcome back to BookStack!");
                             response.sendRedirect("home");

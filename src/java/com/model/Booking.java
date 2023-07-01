@@ -13,6 +13,7 @@ import java.util.Date;
 public class Booking {
     private int id;
     private int packageId;
+    private Packages packages;
     private String customerName;
     private String customerEmail;
     private Date bookingDate;
@@ -21,6 +22,15 @@ public class Booking {
     public Booking(int id, int packageId, String customerName, String customerEmail, Date bookingDate, int numberOfPeople) {
         this.id = id;
         this.packageId = packageId;
+        this.customerName = customerName;
+        this.customerEmail = customerEmail;
+        this.bookingDate = bookingDate;
+        this.numberOfPeople = numberOfPeople;
+    }
+    
+    public Booking(int id, Packages packages, String customerName, String customerEmail, Date bookingDate, int numberOfPeople) {
+        this.id = id;
+        this.packages = packages;
         this.customerName = customerName;
         this.customerEmail = customerEmail;
         this.bookingDate = bookingDate;
@@ -75,5 +85,13 @@ public class Booking {
 
     public void setNumberOfPeople(int numberOfPeople) {
         this.numberOfPeople = numberOfPeople;
+    }
+
+    public Packages getPackages() {
+        return packages;
+    }
+
+    public void setPackages(Packages packages) {
+        this.packages = packages;
     }
 }
