@@ -34,9 +34,9 @@
                 <div class="row">
                     <div class="col-lg-6 text-center text-lg-left mb-2 mb-lg-0">
                         <div class="d-inline-flex align-items-center">
-                            <p><i class="fa fa-envelope mr-2"></i>info@example.com</p>
+                            <p><i class="fa fa-envelope mr-2"></i>info@travelnepal.com</p>
                             <p class="text-body px-3">|</p>
-                            <p><i class="fa fa-phone-alt mr-2"></i>+012 345 6789</p>
+                            <p><i class="fa fa-phone-alt mr-2"></i>+01 002 29 922</p>
                         </div>
                     </div>
                     <div class="col-lg-4 text-center text-lg-right">
@@ -81,7 +81,7 @@
                             <a href="home#service" class="nav-item nav-link">Services</a>
                             <a href="packages?page=listPackage" class="nav-item nav-link">Tour Packages</a>
                             <a href="bookings?page=view" class="nav-item nav-link">Bookings</a>
-                            <a href="contact.html" class="nav-item nav-link">Contact</a>
+                            <a href="home#footer" class="nav-item nav-link">Contact</a>
                                 <%if (session.getAttribute("successMessage") == null){%>
                                     <a href="login" class="align-self-center nav-item nav-link">
                                         <button type="button" class="btn btn-success">Login</button>

@@ -255,7 +255,7 @@
 
 
         <!-- Packages Start -->
-        <div class="container-fluid py-5">
+        <div class="container-fluid py-5" id="packages">
             <div class="container pt-5 pb-3">
                 <div class="text-center mb-3 pb-3">
                     <h6 class="text-primary text-uppercase" style="letter-spacing: 5px;">Packages</h6>
@@ -341,7 +341,7 @@
 
 
         <!-- Team Start -->
-        <div class="container-fluid py-5">
+        <div class="container-fluid py-5" id ="guides">
             <div class="container pt-5 pb-3">
                 <div class="text-center mb-3 pb-3">
                     <h6 class="text-primary text-uppercase" style="letter-spacing: 5px;">Guides</h6>
@@ -423,7 +423,7 @@
 
 
         <!-- Testimonial Start -->
-        <div class="container-fluid py-5">
+        <div class="container-fluid py-5" id="testimonials">
             <div class="container py-5">
                 <div class="text-center mb-3 pb-3">
                     <h6 class="text-primary text-uppercase" style="letter-spacing: 5px;">Testimonial</h6>
