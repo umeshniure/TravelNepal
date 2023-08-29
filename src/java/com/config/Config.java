@@ -5,7 +5,7 @@ import java.sql.*;
 
 public class Config {
 
-    private static final String jdbcURL = "jdbc:mysql://localhost:3306/travelnepal?";
+    private static final String jdbcURL = "jdbc:mysql://localhost:3307/travelnepal?";
     private static String jdbcUsername = "root";
     private static String jdbcPassword = "";
     private static Connection connection = null;

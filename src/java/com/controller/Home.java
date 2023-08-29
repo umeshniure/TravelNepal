@@ -4,16 +4,18 @@
  */
 package com.controller;
 
+import com.dao.GroupByLocation;
 import com.dao.PackagesDAO;
+import com.model.HotLocations;
 import com.model.Packages;
 import java.io.IOException;
 import java.io.PrintWriter;
-import javax.servlet.RequestDispatcher;
-import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import jakarta.servlet.RequestDispatcher;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import java.util.List;
 
 /**
@@ -28,6 +30,10 @@ public class Home extends HttpServlet {
             throws ServletException, IOException {
         List<Packages> packageList = new PackagesDAO().getPackageList();
         request.setAttribute("packages", packageList);
+        
+        List<HotLocations> LocationList = new GroupByLocation().getLocations();
+        request.setAttribute("hotLocations", LocationList);
+        
         RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
         rd.forward(request, response);
     }

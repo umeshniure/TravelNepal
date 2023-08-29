@@ -3,19 +3,8 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="7"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/TravelNepal/TravelNepal/web/viewBooking.jsp</file>
-            <file>file:/D:/TravelNepal/TravelNepal/web/bookingDetail.jsp</file>
-            <file>file:/D:/TravelNepal/TravelNepal/web/navbar.jsp</file>
-            <file>file:/D:/TravelNepal/TravelNepal/web/WEB-INF/web.xml</file>
-            <file>file:/D:/TravelNepal/TravelNepal/src/java/com/controller/BookingController.java</file>
-            <file>file:/D:/TravelNepal/TravelNepal/src/java/com/controller/Home.java</file>
-            <file>file:/D:/TravelNepal/TravelNepal/src/java/com/model/Packages.java</file>
-            <file>file:/D:/TravelNepal/TravelNepal/web/index.jsp</file>
             <file>file:/D:/TravelNepal/TravelNepal/web/PackageList.jsp</file>
-            <file>file:/D:/TravelNepal/TravelNepal/src/java/com/dao/PackagesDAO.java</file>
-            <file>file:/D:/TravelNepal/TravelNepal/src/java/com/model/Booking.java</file>
-            <file>file:/D:/TravelNepal/TravelNepal/src/java/com/dao/BookingDAO.java</file>
-            <file>file:/D:/TravelNepal/TravelNepal/src/java/com/controller/PackageController.java</file>
+            <file>file:/D:/TravelNepal/TravelNepal/src/java/com/controller/BookingController.java</file>
         </group>
     </open-files>
 </project-private>

@@ -13,6 +13,9 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>TRAVELNEPAL</title>
         <meta content="width=device-width, initial-scale=1.0" name="viewport">
+        <style>
+            html { scroll-behavior: smooth; } 
+        </style>
     </head>
 
     <body>
@@ -63,49 +66,45 @@
         <div class="container-fluid booking mt-5 pb-5">
             <div class="container pb-5">
                 <div class="bg-light shadow" style="padding: 30px;">
-                    <div class="row align-items-center" style="min-height: 60px;">
-                        <div class="col-md-10">
-                            <div class="row">
-                                <div class="col-md-3">
-                                    <div class="mb-3 mb-md-0">
-                                        <select class="custom-select px-4" style="height: 47px;">
-                                            <option selected>Destination</option>
-                                            <option value="1">Destination 1</option>
-                                            <option value="2">Destination 1</option>
-                                            <option value="3">Destination 1</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col-md-3">
-                                    <div class="mb-3 mb-md-0">
-                                        <div class="date" id="date1" data-target-input="nearest">
-                                            <input type="text" class="form-control p-4 datetimepicker-input" placeholder="Depart Date" data-target="#date1" data-toggle="datetimepicker"/>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-3">
-                                    <div class="mb-3 mb-md-0">
-                                        <div class="date" id="date2" data-target-input="nearest">
-                                            <input type="text" class="form-control p-4 datetimepicker-input" placeholder="Return Date" data-target="#date2" data-toggle="datetimepicker"/>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-3">
-                                    <div class="mb-3 mb-md-0">
-                                        <select class="custom-select px-4" style="height: 47px;">
-                                            <option selected>Duration</option>
-                                            <option value="1">Duration 1</option>
-                                            <option value="2">Duration 1</option>
-                                            <option value="3">Duration 1</option>
-                                        </select>
-                                    </div>
+                    <form action="packages?page=bookPackage" method = "POST" id="bookingFOrm">
+                        <div class="form-row align-items-center">
+                            <div class="col-md-3 form-group">
+                                <label class="col-form-label">Destination:</label>
+                                <select name ="packageId" class="custom-select px-4 form-control" id="destination" style="height: 47px;">
+                                    <option value="">Select Destination</option>
+                                    <c:forEach var="model" items="${packages}">
+                                        <option value="${model.id}" data-location="${model.location}" data-price="${model.price}" data-time="${model.duration}" data-people="${model.people}">${model.title}</option>
+                                    </c:forEach>
+                                </select>
+                            </div>
+
+                            <div class="col-md-2 form-group">
+                                <label class="col-form-label">Depart Date:</label>
+                                <div class="date" id="date1" data-target-input="nearest">
+                                    <input type="text" class="form-control p-4 datetimepicker-input" placeholder="Depart Date" data-target="#date1" data-toggle="datetimepicker" id="departure-date" required/>
                                 </div>
                             </div>
+                            <div class="col-md-2 form-group">
+                                <label class="col-form-label">Location:</label>
+                                <input type="text" class="form-control" placeholder="Location" id="location" readonly/>
+                            </div>
+                            <div class="col-md-2 form-group">
+                                <label class="col-form-label">Duration:</label>
+                                <input type="text" class="form-control" placeholder="Duration" id="duration" readonly/>
+                            </div>
+                            <div class="col-md-1 form-group">
+                                <label class="col-form-label">Price:</label>
+                                <input type="text" class="form-control" placeholder="Price" id="price" readonly/>
+                            </div>
+                            <div class="col-md-2 form-group">
+                                <label class="col-form-label">People:</label>
+                                <input type="number" class="form-control"  name="numberOfPeople" placeholder="People" id="num-people" readonly/>
+                            </div>
+                            <div class="col-md-3 form-group">
+                                <button class="btn btn-primary btn-block" type="button" style="height: 47px; margin-top: 33px;" onclick="submitForm()">Submit</button>
+                            </div>
                         </div>
-                        <div class="col-md-2">
-                            <button class="btn btn-primary btn-block" type="submit" style="height: 47px; margin-top: -2px;">Submit</button>
-                        </div>
-                    </div>
+                    </form>
                 </div>
             </div>
         </div>
@@ -197,60 +196,17 @@
                     <h1>Explore Top Destination</h1>
                 </div>
                 <div class="row">
-                    <div class="col-lg-4 col-md-6 mb-4">
-                        <div class="destination-item position-relative overflow-hidden mb-2">
-                            <img class="img-fluid" src="img/destination-1.jpg" alt="">
-                            <a class="destination-overlay text-white text-decoration-none" href="">
-                                <h5 class="text-white">United States</h5>
-                                <span>100 Cities</span>
-                            </a>
+                    <c:forEach var="model" items="${hotLocations}">
+                        <div class="col-lg-4 col-md-6 mb-4">
+                            <div class="destination-item position-relative overflow-hidden mb-2">
+                                <img class="img-fluid" src="img/package_photos/${model.picture.substring(model.picture.length() - 5, model.picture.length() - 4)}/${model.picture}" alt="">
+                                <a class="destination-overlay text-white text-decoration-none" href="">
+                                    <h5 class="text-white">${model.location}</h5>
+                                    <span>${model.number} locations</span>
+                                </a>
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6 mb-4">
-                        <div class="destination-item position-relative overflow-hidden mb-2">
-                            <img class="img-fluid" src="img/destination-2.jpg" alt="">
-                            <a class="destination-overlay text-white text-decoration-none" href="">
-                                <h5 class="text-white">United Kingdom</h5>
-                                <span>100 Cities</span>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6 mb-4">
-                        <div class="destination-item position-relative overflow-hidden mb-2">
-                            <img class="img-fluid" src="img/destination-3.jpg" alt="">
-                            <a class="destination-overlay text-white text-decoration-none" href="">
-                                <h5 class="text-white">Australia</h5>
-                                <span>100 Cities</span>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6 mb-4">
-                        <div class="destination-item position-relative overflow-hidden mb-2">
-                            <img class="img-fluid" src="img/destination-4.jpg" alt="">
-                            <a class="destination-overlay text-white text-decoration-none" href="">
-                                <h5 class="text-white">India</h5>
-                                <span>100 Cities</span>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6 mb-4">
-                        <div class="destination-item position-relative overflow-hidden mb-2">
-                            <img class="img-fluid" src="img/destination-5.jpg" alt="">
-                            <a class="destination-overlay text-white text-decoration-none" href="">
-                                <h5 class="text-white">South Africa</h5>
-                                <span>100 Cities</span>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6 mb-4">
-                        <div class="destination-item position-relative overflow-hidden mb-2">
-                            <img class="img-fluid" src="img/destination-6.jpg" alt="">
-                            <a class="destination-overlay text-white text-decoration-none" href="">
-                                <h5 class="text-white">Indonesia</h5>
-                                <span>100 Cities</span>
-                            </a>
-                        </div>
-                    </div>
+                    </c:forEach>
                 </div>
             </div>
         </div>
@@ -279,7 +235,7 @@
                             <i class="fa fa-2x fa-ticket-alt mx-auto mb-4"></i>
                             <h5 class="mb-2">Ticket Booking</h5>
                             <p class="m-0">
-                            Convenient and hassle-free booking of tickets for your desired destinations
+                                Convenient and hassle-free booking of tickets for your desired destinations
                             </p>
                         </div>
                     </div>
@@ -288,7 +244,7 @@
                             <i class="fa fa-2x fa-hotel mx-auto mb-4"></i>
                             <h5 class="mb-2">Hotel Booking</h5>
                             <p class="m-0">
-                            Effortless reservation of comfortable accommodations to suit your travel needs
+                                Effortless reservation of comfortable accommodations to suit your travel needs
                             </p>
                         </div>
                     </div>
@@ -404,8 +360,8 @@
                                 </div>
                             </div>
                             <div class="text-center py-4">
-                                <h5 class="text-truncate">Guide Name</h5>
-                                <p class="m-0">Designation</p>
+                                <h5 class="text-truncate">Sona Khatri</h5>
+                                <p class="m-0">TravelNepal Guide</p>
                             </div>
                         </div>
                     </div>
@@ -421,8 +377,8 @@
                                 </div>
                             </div>
                             <div class="text-center py-4">
-                                <h5 class="text-truncate">Guide Name</h5>
-                                <p class="m-0">Designation</p>
+                                <h5 class="text-truncate">Subash Kandel</h5>
+                                <p class="m-0">Guide</p>
                             </div>
                         </div>
                     </div>
@@ -438,8 +394,8 @@
                                 </div>
                             </div>
                             <div class="text-center py-4">
-                                <h5 class="text-truncate">Guide Name</h5>
-                                <p class="m-0">Designation</p>
+                                <h5 class="text-truncate">Anisha Rana Magar</h5>
+                                <p class="m-0">Guide</p>
                             </div>
                         </div>
                     </div>
@@ -455,8 +411,8 @@
                                 </div>
                             </div>
                             <div class="text-center py-4">
-                                <h5 class="text-truncate">Guide Name</h5>
-                                <p class="m-0">Designation</p>
+                                <h5 class="text-truncate">Siddhartha Oli</h5>
+                                <p class="m-0">Hospitality Director</p>
                             </div>
                         </div>
                     </div>
@@ -477,37 +433,39 @@
                     <div class="text-center pb-4">
                         <img class="img-fluid mx-auto" src="img/testimonial-1.jpg" style="width: 100px; height: 100px;" >
                         <div class="testimonial-text bg-white p-4 mt-n5">
-                            <p class="mt-5">Dolor et eos labore, stet justo sed est sed. Diam sed sed dolor stet amet eirmod eos labore diam
+                            <p class="mt-5">
+                                Absolutely breathtaking! My trip to Nepal was an unforgettable adventure filled with stunning landscapes, vibrant culture, and warm-hearted locals.
                             </p>
-                            <h5 class="text-truncate">Client Name</h5>
-                            <span>Profession</span>
+                            <h5 class="text-truncate">John Chlay</h5>
+                            <span>Writer</span>
                         </div>
                     </div>
                     <div class="text-center">
                         <img class="img-fluid mx-auto" src="img/testimonial-2.jpg" style="width: 100px; height: 100px;" >
                         <div class="testimonial-text bg-white p-4 mt-n5">
-                            <p class="mt-5">Dolor et eos labore, stet justo sed est sed. Diam sed sed dolor stet amet eirmod eos labore diam
+                            <p class="mt-5">
+                                An exceptional trip that left us awestruck with breathtaking destinations, seamless organization, and unforgettable memories. From start to finish, it was an enchanting journey beyond our expectations.
                             </p>
-                            <h5 class="text-truncate">Client Name</h5>
-                            <span>Profession</span>
+                            <h5 class="text-truncate">Shripal Ole</h5>
                         </div>
                     </div>
                     <div class="text-center">
                         <img class="img-fluid mx-auto" src="img/testimonial-3.jpg" style="width: 100px; height: 100px;" >
                         <div class="testimonial-text bg-white p-4 mt-n5">
-                            <p class="mt-5">Dolor et eos labore, stet justo sed est sed. Diam sed sed dolor stet amet eirmod eos labore diam
+                            <p class="mt-5">
+                                An impeccably organized and memorable trip. The diverse destinations, seamless logistics, and friendly guides made it an unforgettable experience
                             </p>
-                            <h5 class="text-truncate">Client Name</h5>
-                            <span>Profession</span>
+                            <h5 class="text-truncate">Christoper Nolan</h5>
+                            <span>Doctor</span>
                         </div>
                     </div>
                     <div class="text-center">
                         <img class="img-fluid mx-auto" src="img/testimonial-4.jpg" style="width: 100px; height: 100px;" >
                         <div class="testimonial-text bg-white p-4 mt-n5">
-                            <p class="mt-5">Dolor et eos labore, stet justo sed est sed. Diam sed sed dolor stet amet eirmod eos labore diam
+                            <p class="mt-5">
+                                An unforgettable journey through Nepal's breathtaking landscapes and rich cultural heritage, offering a perfect blend of adventure and serenity.
                             </p>
-                            <h5 class="text-truncate">Client Name</h5>
-                            <span>Profession</span>
+                            <h5 class="text-truncate">Trisha Chettri</h5>
                         </div>
                     </div>
                 </div>
@@ -516,78 +474,8 @@
         <!-- Testimonial End -->
 
 
-        <!-- Blog Start -->
-        <div class="container-fluid py-5">
-            <div class="container pt-5 pb-3">
-                <div class="text-center mb-3 pb-3">
-                    <h6 class="text-primary text-uppercase" style="letter-spacing: 5px;">Our Blog</h6>
-                    <h1>Latest From Our Blog</h1>
-                </div>
-                <div class="row pb-3">
-                    <div class="col-lg-4 col-md-6 mb-4 pb-2">
-                        <div class="blog-item">
-                            <div class="position-relative">
-                                <img class="img-fluid w-100" src="img/blog-1.jpg" alt="">
-                                <div class="blog-date">
-                                    <h6 class="font-weight-bold mb-n1">01</h6>
-                                    <small class="text-white text-uppercase">Jan</small>
-                                </div>
-                            </div>
-                            <div class="bg-white p-4">
-                                <div class="d-flex mb-2">
-                                    <a class="text-primary text-uppercase text-decoration-none" href="">Admin</a>
-                                    <span class="text-primary px-2">|</span>
-                                    <a class="text-primary text-uppercase text-decoration-none" href="">Tours & Travel</a>
-                                </div>
-                                <a class="h5 m-0 text-decoration-none" href="">Dolor justo sea kasd lorem clita justo diam amet</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6 mb-4 pb-2">
-                        <div class="blog-item">
-                            <div class="position-relative">
-                                <img class="img-fluid w-100" src="img/blog-2.jpg" alt="">
-                                <div class="blog-date">
-                                    <h6 class="font-weight-bold mb-n1">01</h6>
-                                    <small class="text-white text-uppercase">Jan</small>
-                                </div>
-                            </div>
-                            <div class="bg-white p-4">
-                                <div class="d-flex mb-2">
-                                    <a class="text-primary text-uppercase text-decoration-none" href="">Admin</a>
-                                    <span class="text-primary px-2">|</span>
-                                    <a class="text-primary text-uppercase text-decoration-none" href="">Tours & Travel</a>
-                                </div>
-                                <a class="h5 m-0 text-decoration-none" href="">Dolor justo sea kasd lorem clita justo diam amet</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6 mb-4 pb-2">
-                        <div class="blog-item">
-                            <div class="position-relative">
-                                <img class="img-fluid w-100" src="img/blog-3.jpg" alt="">
-                                <div class="blog-date">
-                                    <h6 class="font-weight-bold mb-n1">01</h6>
-                                    <small class="text-white text-uppercase">Jan</small>
-                                </div>
-                            </div>
-                            <div class="bg-white p-4">
-                                <div class="d-flex mb-2">
-                                    <a class="text-primary text-uppercase text-decoration-none" href="">Admin</a>
-                                    <span class="text-primary px-2">|</span>
-                                    <a class="text-primary text-uppercase text-decoration-none" href="">Tours & Travel</a>
-                                </div>
-                                <a class="h5 m-0 text-decoration-none" href="">Dolor justo sea kasd lorem clita justo diam amet</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Blog End -->
-
         <jsp:include page="footer.jsp"/>
-        
+
 
         <!-- Contact Javascript File -->
         <script src="mail/jqBootstrapValidation.min.js"></script>
@@ -597,33 +485,75 @@
         <script src="js/main.js"></script>
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
         <script>
-            $(document).ready(function () {
-                // Define the number of items per page
-                var itemsPerPage = 3;
+                            $(document).ready(function () {
+                                // Define the number of items per page
+                                var itemsPerPage = 3;
 
-                // Get the total number of items
-                var totalItems = ${packages.size()};
+                                // Get the total number of items
+                                var totalItems = ${packages.size()};
 
-                // Calculate the number of pages
-                var totalPages = Math.ceil(totalItems / itemsPerPage);
+                                // Calculate the number of pages
+                                var totalPages = Math.ceil(totalItems / itemsPerPage);
 
-                // Set the initial page to 1
-                var currentPage = 1;
+                                // Set the initial page to 1
+                                var currentPage = 1;
 
-                // Function to display the items for the current page
-                function displayItems(page) {
-                    // Calculate the starting and ending item indices
-                    var startIndex = (page - 1) * itemsPerPage;
-                    var endIndex = startIndex + itemsPerPage;
+                                // Function to display the items for the current page
+                                function displayItems(page) {
+                                    // Calculate the starting and ending item indices
+                                    var startIndex = (page - 1) * itemsPerPage;
+                                    var endIndex = startIndex + itemsPerPage;
 
-                    // Hide all items
-                    $('.card').hide();
+                                    // Hide all items
+                                    $('.card').hide();
 
-                    // Show the items for the current page
-                    $('.card').slice(startIndex, endIndex).show();
-                }
-                displayItems(currentPage);
-            });
+                                    // Show the items for the current page
+                                    $('.card').slice(startIndex, endIndex).show();
+                                }
+                                displayItems(currentPage);
+                            });
+        </script>
+
+        <script>
+            // Function to update the displayed details based on the selected destination
+            function updateDestinationDetails() {
+                const destinationSelect = document.getElementById("destination");
+                const locationField = document.getElementById("location");
+                const timeField = document.getElementById("duration");
+                const numPeopleField = document.getElementById("num-people");
+                const priceField = document.getElementById("price");
+
+                const selectedOption = destinationSelect.options[destinationSelect.selectedIndex];
+                const location = selectedOption.getAttribute("data-location");
+                const time = selectedOption.getAttribute("data-time");
+                const numPeople = selectedOption.getAttribute("data-people");
+                const price = selectedOption.getAttribute("data-price");
+
+                locationField.value = location;
+                timeField.value = time;
+                numPeopleField.value = numPeople;
+                priceField.value = price;
+            }
+
+            // Function to handle form submission
+            function submitForm() {
+                formElem = document.getElementById("bookingFOrm");
+                const destinationSelect = document.getElementById("destination");
+                const departureDateInput = document.getElementById("departure-date");
+                const numPeopleField = document.getElementById("num-people");
+
+                const selectedOption = destinationSelect.options[destinationSelect.selectedIndex];
+                const destinationId = selectedOption.value;
+                const departureDate = departureDateInput.value;
+                const numPeople = numPeopleField.value;
+                const price = selectedOption.getAttribute("data-price");
+                console.log(destinationId,departureDate,numPeople,price)
+                formElem.submit()
+                
+            }
+
+            // Attach event listener to destination select to update the details when a destination is chosen
+            document.getElementById("destination").addEventListener("change", updateDestinationDetails);
         </script>
     </body>
 
